@@ -1,6 +1,8 @@
 package com.webreattivo.apptest;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -60,6 +62,14 @@ public class MainActivity extends ActionBarActivity {
                     TextView txt = (TextView) v.findViewById(R.id.row_title);
                     txt.setText(title);
                 }
+
+                @Override
+                public long getItemId(int position)
+                {
+                    Cursor crs=adapter.getCursor();
+                    crs.moveToPosition(position);
+                    return crs.getLong(crs.getColumnIndex(NoteEntity.FIELD_ID));
+                }
             };
 
             listView.setAdapter(adapter);
@@ -84,6 +94,35 @@ public class MainActivity extends ActionBarActivity {
                 null,
                 sortOrder
         ));
+    }
+
+    public void onClickBtnDelete(View v)
+    {
+        final int position = listView.getPositionForView(v);
+        new AlertDialog.Builder(this)
+                .setTitle("Elimina")
+                .setMessage("Sei sicuro di voler eliminare questa nota?")
+                .setIcon(android.R.drawable.ic_delete)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        long id = adapter.getItemId(position);
+                        if (db.delete(NoteEntity.TBL_NAME, NoteEntity.FIELD_ID+"=?",
+                                new String[]{Long.toString(id)})>0) {
+                            adapter.changeCursor(db.query(
+                                    NoteEntity.TBL_NAME,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    sortOrder
+                            ));
+                        }
+
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
     }
 
     @Override
