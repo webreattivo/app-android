@@ -22,8 +22,6 @@ public class AddNoteActivity extends ActionBarActivity {
 
     private DbHelper dbhelper;
 
-    private static final String TAG = "addNote";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

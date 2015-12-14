@@ -24,6 +24,7 @@
         android:layout_centerVertical="true"
         android:src="@android:drawable/ic_menu_edit"
         android:id="@+id/btn_edit"
+        android:onClick="onClickBtnEdit"
         android:layout_toLeftOf="@+id/btn_delete"
         />
 

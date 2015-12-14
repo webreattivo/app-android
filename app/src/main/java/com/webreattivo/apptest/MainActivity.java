@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -85,7 +87,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.changeCursor(db.query(
+        adapter.changeCursor(
+            db.query(
                 NoteEntity.TBL_NAME,
                 null,
                 null,
@@ -93,7 +96,37 @@ public class MainActivity extends ActionBarActivity {
                 null,
                 null,
                 sortOrder
-        ));
+            )
+        );
+    }
+
+    public void onClickBtnEdit(View v)
+    {
+        int position = listView.getPositionForView(v);
+        long id = adapter.getItemId(position);
+
+        try
+        {
+            Cursor info = db.query(
+                    NoteEntity.TBL_NAME,
+                    null,
+                    "_id = ?",
+                    new String[]{Long.toString(id)},
+                    null,
+                    null,
+                    null
+                );
+            info.moveToFirst();
+
+            Intent intent = new Intent(this, EditNoteActivity.class);
+            intent.putExtra("title", info.getString(info.getColumnIndex(NoteEntity.FIELD_TITLE)));
+            intent.putExtra("description", info.getString(info.getColumnIndex(NoteEntity.FIELD_DESCRIPTION)));
+            intent.putExtra("id", info.getLong(info.getColumnIndex(NoteEntity.FIELD_ID)));
+            startActivity(intent);
+
+        } catch(SQLiteException sqle) {
+            Toast.makeText(getApplicationContext(), "Errore durante il recupero delle informazioni. ", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onClickBtnDelete(View v)
@@ -109,7 +142,7 @@ public class MainActivity extends ActionBarActivity {
 
                         long id = adapter.getItemId(position);
                         if (db.delete(NoteEntity.TBL_NAME, NoteEntity.FIELD_ID+"=?",
-                                new String[]{Long.toString(id)})>0) {
+                                new String[]{Long.toString(id)}) > 0) {
                             adapter.changeCursor(db.query(
                                     NoteEntity.TBL_NAME,
                                     null,
@@ -120,7 +153,6 @@ public class MainActivity extends ActionBarActivity {
                                     sortOrder
                             ));
                         }
-
                     }})
                 .setNegativeButton(android.R.string.no, null).show();
     }
