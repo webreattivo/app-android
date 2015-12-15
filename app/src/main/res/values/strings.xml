@@ -10,6 +10,8 @@
     <string name="hint_description_add_note">Aggiungi una descrizione alla tua nota</string>
     <string name="button_add_note">Aggiungi Nota</string>
     <string name="button_edit_note">Modifica Nota</string>
+    <string name="button_select_date">Seleziona Data</string>
+
     <string name="empty_note">Nessuna Nota Salvata</string>
     <string name="title_activity_edit_note">Modifica Nota</string>
 

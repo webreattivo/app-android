@@ -23,6 +23,23 @@
         android:layout_marginTop="15dip"
         android:hint="@string/hint_description_add_note"/>
 
+    <Button
+        android:id="@+id/select_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="15dip"
+        android:text="@string/button_select_date" />
+
+    <TextView
+        android:id="@+id/viewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/select_data"
+        android:layout_marginTop="15dp"
+        android:text="" />
+
     <Button android:id="@+id/saveNote"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

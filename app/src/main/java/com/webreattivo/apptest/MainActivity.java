@@ -121,6 +121,7 @@ public class MainActivity extends ActionBarActivity {
             Intent intent = new Intent(this, EditNoteActivity.class);
             intent.putExtra("title", info.getString(info.getColumnIndex(NoteEntity.FIELD_TITLE)));
             intent.putExtra("description", info.getString(info.getColumnIndex(NoteEntity.FIELD_DESCRIPTION)));
+            intent.putExtra("date", info.getString(info.getColumnIndex(NoteEntity.FIELD_DATE)));
             intent.putExtra("id", info.getLong(info.getColumnIndex(NoteEntity.FIELD_ID)));
             startActivity(intent);
 
@@ -133,7 +134,7 @@ public class MainActivity extends ActionBarActivity {
     {
         final int position = listView.getPositionForView(v);
         new AlertDialog.Builder(this)
-                .setTitle("Elimina")
+                .setTitle("Elimina Nota")
                 .setMessage("Sei sicuro di voler eliminare questa nota?")
                 .setIcon(android.R.drawable.ic_delete)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -143,6 +144,9 @@ public class MainActivity extends ActionBarActivity {
                         long id = adapter.getItemId(position);
                         if (db.delete(NoteEntity.TBL_NAME, NoteEntity.FIELD_ID+"=?",
                                 new String[]{Long.toString(id)}) > 0) {
+
+                            Toast.makeText(getApplicationContext(), "Nota rimossa con successo. ", Toast.LENGTH_LONG).show();
+
                             adapter.changeCursor(db.query(
                                     NoteEntity.TBL_NAME,
                                     null,
