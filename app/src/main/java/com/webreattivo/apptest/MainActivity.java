@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -61,8 +59,13 @@ public class MainActivity extends ActionBarActivity {
                 public void bindView(View v, Context arg1, Cursor cursor)
                 {
                     String title = cursor.getString(cursor.getColumnIndex(NoteEntity.FIELD_TITLE));
+                    String date = cursor.getString(cursor.getColumnIndex(NoteEntity.FIELD_DATE));
+
                     TextView txt = (TextView) v.findViewById(R.id.row_title);
                     txt.setText(title);
+
+                    TextView dateInput = (TextView) v.findViewById(R.id.row_date);
+                    dateInput.setText(date);
                 }
 
                 @Override

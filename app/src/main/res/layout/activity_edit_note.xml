@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="15dip"
+        android:background="@drawable/button"
+        android:textColor="#ffffff"
         android:text="@string/button_select_date" />
 
     <TextView
@@ -45,6 +47,9 @@
         android:layout_height="wrap_content"
         android:text="@string/button_edit_note"
         android:onClick="updateNote"
+        android:background="@drawable/button"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
         android:layout_marginTop="15dip"/>
 
 </LinearLayout>

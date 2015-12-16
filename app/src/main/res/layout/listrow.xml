@@ -2,13 +2,14 @@
 <RelativeLayout
     android:layout_height="wrap_content"
     android:layout_width="400dp"
+    android:padding="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_toLeftOf="@+id/btn_edit"
+        android:paddingLeft="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -16,6 +17,12 @@
             android:layout_height="wrap_content"
             style="@style/big_text"
             android:id="@+id/row_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/small_text"
+            android:id="@+id/row_date"/>
     </LinearLayout>
 
     <ImageButton
@@ -34,6 +41,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:onClick="onClickBtnDelete"
+
         android:src="@android:drawable/ic_menu_delete"
         android:id="@+id/btn_delete"
         />

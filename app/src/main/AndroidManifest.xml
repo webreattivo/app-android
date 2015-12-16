@@ -36,6 +36,11 @@
             android:name=".EditNoteActivity"
             android:label="@string/title_activity_edit_note" >
         </activity>
+
+        <receiver
+            android:name=".NotificationPublisher"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
