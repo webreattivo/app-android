@@ -143,7 +143,7 @@ public class AddNoteActivity extends ActionBarActivity {
         }
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            mTimeDisplay.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+            mTimeDisplay.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(String.format("%02d", minute)));
         }
     }
 
