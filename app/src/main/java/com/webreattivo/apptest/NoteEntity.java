@@ -17,7 +17,7 @@ public class NoteEntity {
                 " ( _id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 FIELD_TITLE+" TEXT," +
                 FIELD_DESCRIPTION+" TEXT," +
-                FIELD_DATE+" DATE)";
+                FIELD_DATE+ " DATETIME)";
         return query;
     }
 
