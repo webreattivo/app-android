@@ -23,24 +23,30 @@
         android:layout_marginTop="15dip"
         android:hint="@string/hint_description_add_note"/>
 
-    <Button
-        android:id="@+id/select_data"
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="15dip"
-        android:background="@drawable/button"
-        android:textColor="#ffffff"
-        android:text="@string/button_select_date" />
-
-    <TextView
-        android:id="@+id/viewDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/select_data"
-        android:layout_marginTop="15dp"
-        android:text="" />
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/select_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:background="@drawable/button"
+                android:textColor="#ffffff"
+                android:text="@string/button_select_date" />
+            <TextView
+                android:id="@+id/viewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#7B1FA2"
+                android:text="" />
+        </TableRow>
+    </TableLayout>
 
     <Button android:id="@+id/saveNote"
         android:layout_width="fill_parent"
